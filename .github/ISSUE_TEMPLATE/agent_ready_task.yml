@@ -1,0 +1,44 @@
+name: Agent-ready task
+description: Propose a bounded issue for a contributor or AI-assisted implementation.
+title: "[Task]: "
+labels:
+  - needs-triage
+body:
+  - type: markdown
+    attributes:
+      value: "Only a maintainer may apply the `agent-ready` label after scope, acceptance criteria, and test expectations are clear."
+  - type: textarea
+    id: outcome
+    attributes:
+      label: User outcome and current behavior
+      description: State the user-facing result and what happens today.
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: In scope and out of scope
+      description: Identify affected areas, exclusions, dependencies, and licensing concerns.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Write specific, testable conditions.
+    validations:
+      required: true
+  - type: textarea
+    id: tests
+    attributes:
+      label: Tests and hardware validation
+      description: Give exact host checks and any required device/controller/display test.
+    validations:
+      required: true
+  - type: checkboxes
+    id: data-safety
+    attributes:
+      label: Safety review
+      options:
+        - label: Scope excludes ROMs, BIOS, saves, credentials, private logs, and unapproved system changes.
+          required: true

@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  syntax:
+    name: Syntax checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Check Bash syntax
+        run: bash -n scripts/install-pegasus.sh
+
+      - name: Parse Python scripts
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          for path in sorted(Path("scripts").glob("*.py")):
+              compile(path.read_text(encoding="utf-8"), str(path), "exec")
+          PY

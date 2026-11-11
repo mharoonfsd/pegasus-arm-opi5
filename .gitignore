@@ -1,0 +1,18 @@
+# Local upstream RetroArch source and build outputs; the installer fetches its pinned copy.
+/RetroArch-1.22.2/
+/RetroArch-v1.22.2.tar.gz
+/build/
+/dist/
+
+# Local credentials and logs.
+.env
+.env.*
+!.env.example
+*.log
+__pycache__/
+*.py[cod]
+
+# User game data must not be added to the project repository.
+roms/
+bios/
+saves/

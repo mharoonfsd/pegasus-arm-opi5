@@ -1,0 +1,41 @@
+name: Hardware test report
+description: Submit a reproducible test from a board or peripheral.
+title: "[Hardware test]: "
+labels:
+  - needs-triage
+  - needs-hardware
+body:
+  - type: input
+    id: board
+    attributes:
+      label: Board and revision
+      placeholder: Orange Pi 5, revision if known
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: OS, kernel, and architecture
+    validations:
+      required: true
+  - type: textarea
+    id: test
+    attributes:
+      label: Exact test procedure
+      description: Include commands, game/core where relevant, and connected controller/display/audio devices.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Result and evidence
+      description: Separate observed results from assumptions; include performance only with measurement context.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safe-data
+    attributes:
+      label: Data safety
+      options:
+        - label: I have not attached ROMs, BIOS, saves, credentials, or private logs.
+          required: true

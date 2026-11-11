@@ -1,0 +1,34 @@
+name: Bug report
+description: Report a reproducible problem.
+title: "[Bug]: "
+labels:
+  - needs-triage
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Describe the observed behavior and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Include the exact command or UI steps, using a safe test library.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment and evidence
+      description: Board, OS, kernel, architecture, relevant core/version, and exact test result.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safe-data
+    attributes:
+      label: Data safety
+      options:
+        - label: I removed credentials, private paths/logs, ROMs, BIOS, saves, and scraped media from this report.
+          required: true

@@ -1,0 +1,97 @@
+diff --git a/Settings/SettingsScreen.qml b/Settings/SettingsScreen.qml
+index f10b772..19d63b5 100644
+--- a/Settings/SettingsScreen.qml
++++ b/Settings/SettingsScreen.qml
+@@ -23,10 +23,10 @@ id: root
+     ListModel {
+     id: settingsModel
+ 
+-        /*ListElement {
++        ListElement {
+             settingName: "Game View"
+             setting: "Grid,Vertical List"
+-        }*/
++        }
+         ListElement {
+             settingName: "Allow video thumbnails"
+             setting: "Yes,No"
+@@ -64,6 +64,33 @@ id: root
+         }
+     }
+ 
++    ListModel {
++        id: librarySettingsModel
++        ListElement {
++            settingName: "Refresh library on startup"
++            setting: "Yes,No"
++        }
++        ListElement {
++            settingName: "Default sort"
++            setting: "Title,Last played,Play count,Rating"
++        }
++        ListElement {
++            settingName: "Default sort order"
++            setting: "Ascending,Descending"
++        }
++        ListElement {
++            settingName: "Favorites only on startup"
++            setting: "No,Yes"
++        }
++    }
++
++    property var libraryPage: {
++        return {
++            pageName: "Library & lists",
++            listmodel: librarySettingsModel
++        }
++    }
++
+     ListModel {
+         id: advancedSettingsModel
+         ListElement {
+@@ -203,7 +230,7 @@ id: root
+         }
+     }
+ 
+-    property var settingsArr: [generalPage, showcasePage, gridPage, gamePage, advancedPage]
++    property var settingsArr: [generalPage, showcasePage, gridPage, libraryPage, gamePage, advancedPage]
+ 
+     property real itemheight: vpx(50)
+ 
+diff --git a/theme.qml b/theme.qml
+index 0159e18..6a60a05 100644
+--- a/theme.qml
++++ b/theme.qml
+@@ -66,7 +66,11 @@ id: root
+             ShowcaseCollection5:           api.memory.has("Collection 5") ? api.memory.get("Collection 5") : "None",
+             ShowcaseCollection5_Thumbnail: api.memory.has("Collection 5 - Thumbnail") ? api.memory.get("Collection 5 - Thumbnail") : "Wide",
+             WideRatio:                     api.memory.has("Wide - Ratio") ? api.memory.get("Wide - Ratio") : "0.64",
+-            TallRatio:                     api.memory.has("Tall - Ratio") ? api.memory.get("Tall - Ratio") : "0.66"
++            TallRatio:                     api.memory.has("Tall - Ratio") ? api.memory.get("Tall - Ratio") : "0.66",
++            RefreshLibraryOnStartup:       api.memory.has("Refresh library on startup") ? api.memory.get("Refresh library on startup") : "Yes",
++            DefaultSort:                   api.memory.has("Default sort") ? api.memory.get("Default sort") : "Title",
++            DefaultSortOrder:              api.memory.has("Default sort order") ? api.memory.get("Default sort order") : "Ascending",
++            FavoritesOnlyOnStartup:        api.memory.has("Favorites only on startup") ? api.memory.get("Favorites only on startup") : "No"
+             
+         }
+     }
+@@ -87,11 +91,11 @@ id: root
+     onCurrentCollectionIndexChanged: storedCollectionGameIndex = 0
+ 
+     // Filtering options
+-    property bool showFavs: false
++    property bool showFavs: settings.FavoritesOnlyOnStartup === "Yes"
+     property var sortByFilter: ["sort_title", "lastPlayed", "playCount", "rating"]
+     property var sortByDisplay: ["title", "last played", "play count", "rating"]
+-    property int sortByIndex: 0
+-    property var orderBy: Qt.AscendingOrder
++    property int sortByIndex: Math.max(0, sortByDisplay.indexOf(settings.DefaultSort.toLowerCase()))
++    property var orderBy: settings.DefaultSortOrder === "Descending" ? Qt.DescendingOrder : Qt.AscendingOrder
+     property string searchTerm: ""
+     property bool steam: currentCollection.name === "Steam"
+     function steamExists() {
+@@ -465,4 +469,3 @@ id: root
+     }
+     
+ }
+-
