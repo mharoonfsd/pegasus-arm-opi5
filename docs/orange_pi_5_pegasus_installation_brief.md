@@ -419,7 +419,7 @@ The following details are not yet known, and must not be guessed:
 
 - Whether the library is on an external drive, a Windows network share, or separate local drives;
 - The actual RetroBat root and subdirectory paths;
-- Which consoles/arcade systems are the priority;
+- The selected system targets are Atari 2600, FBNeo, MAME, Mega Drive/Genesis, Mega CD/Sega CD, Nintendo 64, NES, and SNES; native ARM64 support and performance are still to be verified system by system;
 - Whether the user wants emulator installation included now or wants to start with Pegasus only;
 - Whether the user eventually wants optional controller-first startup/autostart.
 
@@ -457,6 +457,12 @@ The lightweight X11 resource HUD and 500 ms session CSV/F12 marker monitor descr
 ## Current screen and arcade art
 
 The current Duimon presets enable moderate CRT curvature (`HSM_CURVATURE_MODE=1`, scale 100) while keeping horizontal scanlines and disabling screen glow, vignette, and phosphor-mask effects. For FBNeo, per-game backgrounds use the matching PNG from the official [Bezel Project MAME pack](https://github.com/thebezelproject/bezelprojectSA-MAME), cached under `~/Applications/Pegasus/roms/.media/bezelproject/ArcadeBezels/`. The full Bezel Project art is composed into an opaque shader background beneath the Duimon bezel; Pegasus box-front metadata is unchanged. The launcher does not enable the separate full-screen transparent input overlay. If no matching Bezel Project art is available, the standard Duimon cabinet preset is used. RetroArch's touch/gamepad input overlays are separate.
+
+## Community feature briefs and automated checks
+
+The initial parity roadmap and one-task-per-feature briefs are indexed in [`features/README.md`](../features/README.md). They are drafts, not proof of implementation or permission to make broad changes; a maintainer must triage each linked issue before it is treated as ready for an AI agent.
+
+The hosted repository CI runs Bash/Python syntax checks, ShellCheck, Ruff unused-code checks, Bandit, Gitleaks on added/modified files, actionlint, and zizmor. Scanner findings are intended to block their required checks; branch protection/rulesets must be enabled by the repository owner. These tools provide actionable static diagnostics but cannot prove code harmless, identify every malicious change, or determine all unnecessary code. Human review remains mandatory. CI does not test the Orange Pi, launch games, or establish stable 60 FPS.
 
 ## Final rule
 

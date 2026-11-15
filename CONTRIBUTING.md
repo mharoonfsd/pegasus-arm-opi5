@@ -8,6 +8,8 @@ Contributions can include focused code changes, documentation, reproducible bug 
 
 ## Before starting work
 
+Start with [`START_HERE_AI_CONTRIBUTORS.md`](START_HERE_AI_CONTRIBUTORS.md) for the step-by-step AI-assisted contribution workflow.
+
 1. Check for an existing issue or open a focused issue with the expected behavior and acceptance criteria.
 2. Wait for maintainer triage before treating an issue as `agent-ready`.
 3. Fork the repository and work on a task-specific branch. Do not push directly to the upstream default branch.
@@ -24,7 +26,7 @@ Contributions can include focused code changes, documentation, reproducible bug 
 
 ## Validation
 
-Run the relevant checks available for the change. The repository's initial CI checks shell syntax and Python source parsing:
+Run the relevant checks available for the change. The CI workflow also runs the scanner jobs documented in [the Actions policy](.github/SETUP_ACTIONS_POLICY.md). The syntax checks can be run locally with:
 
 ```bash
 bash -n scripts/install-pegasus.sh
@@ -36,6 +38,8 @@ for path in sorted(Path("scripts").glob("*.py")):
 PY
 ```
 
-For installer, library, graphics, or emulator changes, also describe tests that require the Orange Pi or user data. Do not run destructive or privileged tests against a real library as a substitute for a safe test fixture.
+For installer, library, graphics, or emulator changes, also describe tests that require the Orange Pi or user data. Do not run destructive or privileged tests against a real library as a substitute for a safe test fixture. For host-side scanner checks, see the exact commands in [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
 
-Maintainers review and merge PRs after checks pass. High-risk changes should receive a second human review where practical; donations or compute contributions never grant review or merge authority.
+CI runs shell, Python, workflow, and secret checks. A scanner finding that fails a required check must be fixed before merge; do not hide findings with broad suppressions. If a tool reports a verified false positive, propose a narrow rule/path exception with a rationale for maintainer review. No scanner can prove code harmless or judge all unnecessary code, so every PR still needs human review. High-risk changes should receive a second human review where practical; donations or compute contributions never grant review or merge authority.
+
+Feature-specific contributor briefs are indexed in [`features/README.md`](features/README.md). Each brief is a task specification, not merge approval: follow `AGENTS.md`, use a task-specific branch, and wait for maintainer triage before treating a draft as ready.

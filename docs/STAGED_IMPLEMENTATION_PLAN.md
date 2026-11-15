@@ -48,8 +48,8 @@ Tasks:
 4. Add SECURITY and Code of Conduct documents.
 5. Add labels and a GitHub Projects board.
 6. Enable Discussions if moderation capacity exists.
-7. Protect the default branch.
-8. Set least-privilege Actions permissions and add basic host-side CI.
+7. Protect the default branch and require every scanner status check plus human review.
+8. Set least-privilege Actions permissions and run host-side syntax, lint, secret, and workflow-security checks.
 9. Add funding policy and real funding links only after their payout path is verified.
 
 **Exit criteria:**
@@ -63,7 +63,7 @@ Tasks:
 
 **Goal:** prove that work can be completed by external contributors without the owner designing every step.
 
-Start with 5–10 small, independent tasks. Do not label a task `agent-ready` until it has:
+The initial feature briefs are indexed in [`features/README.md`](../features/README.md), but remain drafts until maintainer triage. Start with 5–10 small, independent tasks. Do not label a task `agent-ready` until it has:
 
 - clear user outcome;
 - current and desired behaviour;

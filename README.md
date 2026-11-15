@@ -4,6 +4,8 @@ This project provides a staged, user-local setup for Pegasus Frontend on Ubuntu 
 
 It does **not** run RetroBat, Wine, Box64, or x86 emulation. It does not replace Ubuntu, install emulators, alter graphics drivers, add software repositories, or copy/move your ROMs, BIOS, media, or saves.
 
+> **Contributing with an AI agent? Start here:** [`START_HERE_AI_CONTRIBUTORS.md`](START_HERE_AI_CONTRIBUTORS.md).
+
 ## Status and scope
 
 Implemented in this workspace:
@@ -11,7 +13,8 @@ Implemented in this workspace:
 - Read-only ARM64/Ubuntu/dependency preflight.
 - Explicitly confirmed, pinned source build and per-user install.
 - Optional native ARM64 RetroArch and Ubuntu libretro-core installation.
-- Documented future emulation targets; availability and Orange Pi 5 performance are verified per system before setup.
+- A selected roadmap target of eight systems: Atari 2600, FBNeo, MAME, Mega Drive/Genesis (one system), Mega CD/Sega CD, Nintendo 64, NES, and SNES. This is a scope decision, not a claim that all systems can launch or perform adequately.
+- Documented emulation targets; native ARM64 availability, launch behavior, and Orange Pi 5 performance remain to be verified per system.
 - Dry-run mode.
 - Read-only inspection of a library root supplied by the user.
 - Per-user upstream launcher, installation log, manifest, and backup of an existing launcher before replacement.
@@ -40,6 +43,8 @@ Library setup is intentionally a later stage. The suggested Pegasus-side path is
 - Build prerequisites are installed only after the script shows the package plan and receives confirmation.
 
 Research and source links are in [docs/pegasus-arm64-research.md](docs/pegasus-arm64-research.md). The original safety and acceptance requirements are in [docs/orange_pi_5_pegasus_installation_brief.md](docs/orange_pi_5_pegasus_installation_brief.md).
+
+Feature briefs for future contributions are indexed in [features/README.md](features/README.md). They are drafts pending maintainer review and do not indicate implemented or verified functionality. CI runs syntax checks, ShellCheck, Python security/unused-code checks, Gitleaks on added/modified files, actionlint, and zizmor; these checks are not hardware tests or proof that code is harmless. Required status checks and branch rules must be configured by the repository owner.
 
 ## Commands
 
@@ -147,6 +152,6 @@ The current Duimon presets enable moderate CRT curvature (`HSM_CURVATURE_MODE=1`
 
 ## Community development and funding
 
-The local repository is being prepared for community contributions; it has not been published and no license has been selected. Review [CONTRIBUTING.md](CONTRIBUTING.md), [AGENTS.md](AGENTS.md), the [project status](docs/PROJECT_STATUS.md), the [operating model](docs/OPERATING_MODEL.md), and the [staged implementation plan](docs/STAGED_IMPLEMENTATION_PLAN.md) before inviting contributors.
+The GitHub repository is being prepared for community contributions; no license has been selected and no release is being claimed. New contributors should begin with [`START_HERE_AI_CONTRIBUTORS.md`](START_HERE_AI_CONTRIBUTORS.md). Also review [CONTRIBUTING.md](CONTRIBUTING.md), [AGENTS.md](AGENTS.md), the [project status](docs/PROJECT_STATUS.md), the [operating model](docs/OPERATING_MODEL.md), and the [staged implementation plan](docs/STAGED_IMPLEMENTATION_PLAN.md) before inviting contributors.
 
 The project is not currently accepting donations through an official online channel. The funding policy is in [FUNDING.md](FUNDING.md); verified funding links will be added only after the owner chooses a platform and completes payout verification. Code, documentation, and hardware testing remain useful non-financial ways to help.

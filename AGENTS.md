@@ -23,4 +23,11 @@ This project targets native Pegasus and RetroArch use on Ubuntu ARM64, especiall
 - Develop in a contributor fork or an explicitly authorized branch, never directly on the upstream default branch.
 - The human contributor is responsible for AI-generated changes. Agents do not approve, merge, publish releases, access repository secrets, or change hosting settings.
 - Treat installer, security, workflow, dependency, license, and user-data changes as high risk and explain rollback and validation.
+
+## Contribution specifications and CI
+
+- Feature briefs are indexed in `features/README.md`. They are drafts until a maintainer links and triages a focused issue; a brief is not permission to implement broad adjacent work.
+- Run the relevant CI checks. The workflow blocks on Bash/Python checks, ShellCheck, Ruff unused-code checks, Bandit, Gitleaks, actionlint, and zizmor findings.
+- Do not suppress a scanner finding broadly. A narrowly scoped suppression requires a verified false-positive rationale and maintainer approval.
+- Automated scans do not prove code harmless or judge every unnecessary change. Review the diff against the issue and acceptance criteria; require human review.
 - Do not add a license, funding destination, CODEOWNERS identity, or repository setting based on a guess.

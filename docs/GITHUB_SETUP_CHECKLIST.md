@@ -139,6 +139,8 @@ GitHub only uses a CODEOWNERS file from the PR's base branch when requesting rev
 - [ ] Do not store developer AI keys or personal cloud credentials as repository secrets.
 - [ ] Enable Dependabot alerts/security updates where available.
 - [ ] Enable secret scanning/push protection and code scanning where available for the plan and language mix.
+- [ ] Require every stable CI status check (syntax, ShellCheck, Python analysis, Gitleaks, and workflow analysis) in the `main` branch ruleset.
+- [ ] Confirm scanner jobs run for fork pull requests and fail on findings; review any false-positive exception before merge.
 - [ ] Add a `SECURITY.md` explaining how to report vulnerabilities privately.
 - [ ] Review workflow changes as high-risk code.
 

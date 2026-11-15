@@ -240,7 +240,11 @@ run_preflight() {
         if (( WITH_RETROARCH )) || [[ "$OPERATION" == "install-retroarch" ]]; then
             local retro_count=0
             local package
-            for package in "$(available_retroarch_packages)"; do
+            local -a retro_packages=()
+            while IFS= read -r package; do
+                [[ -n "$package" ]] && retro_packages+=("$package")
+            done < <(available_retroarch_packages)
+            for package in "${retro_packages[@]}"; do
                 if package_installed "$package"; then
                     say_status "PASS" "RetroArch package is installed: $package."
                 else
@@ -1157,7 +1161,7 @@ install_pegasus_themes() {
     mkdir -p "$theme_dir"
     for old_theme in neoretro es2-simple clean-covers nostalgia-grid slate-es-de; do
         if [[ -d "$theme_dir/$old_theme" ]]; then
-            rm -rf -- "$theme_dir/$old_theme"
+            rm -rf -- "${theme_dir:?}/$old_theme"
             record_manifest "$theme_dir/$old_theme" "removed" "Removed because gameOS is the selected default theme"
         fi
         local old_settings="${XDG_CONFIG_HOME:-$HOME/.config}/pegasus-frontend/theme_settings/$old_theme.json"

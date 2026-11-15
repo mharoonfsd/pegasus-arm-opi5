@@ -7,7 +7,8 @@ import queue
 import re
 import signal
 import shutil
-import subprocess
+# Bandit B404 is generic here; calls use fixed local X11 tools without a shell.
+import subprocess  # nosec B404
 import sys
 import threading
 import time
@@ -179,7 +180,8 @@ def keycodes_for(keysym):
     xmodmap = shutil.which("xmodmap")
     if not xmodmap:
         return set()
-    result = subprocess.run(
+    # Bandit B603 is a false positive: the executable and arguments are fixed.
+    result = subprocess.run(  # nosec B603
         [xmodmap, "-pke"],
         check=True,
         capture_output=True,
@@ -201,7 +203,8 @@ def read_retroarch_fps(xdotool, pid, window_id):
         window_ids = [window_id]
     else:
         try:
-            result = subprocess.run(
+            # Bandit B603 is a false positive: the executable and argument array are controlled.
+            result = subprocess.run(  # nosec B603
                 [xdotool, "search", "--onlyvisible", "--pid", str(pid)],
                 capture_output=True,
                 text=True,
@@ -214,7 +217,8 @@ def read_retroarch_fps(xdotool, pid, window_id):
 
     for candidate in window_ids:
         try:
-            result = subprocess.run(
+            # Bandit B603 is a false positive: window IDs are one argument and no shell is used.
+            result = subprocess.run(  # nosec B603
                 [xdotool, "getwindowname", candidate],
                 capture_output=True,
                 text=True,
@@ -251,7 +255,8 @@ class MarkerListener:
         command = ([stdbuf, "-oL", xinput] if stdbuf else [xinput])
         command.extend(("test-xi2", "--root"))
         try:
-            self.process = subprocess.Popen(
+            # Bandit B603 is a false positive: this command is a local executable argument list.
+            self.process = subprocess.Popen(  # nosec B603
                 command,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.DEVNULL,

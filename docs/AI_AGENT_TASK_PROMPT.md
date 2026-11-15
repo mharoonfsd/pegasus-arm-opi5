@@ -13,6 +13,7 @@ First read:
 - docs/orange_pi_5_pegasus_installation_brief.md
 - docs/STAGED_IMPLEMENTATION_PLAN.md
 - the linked GitHub issue
+- the feature brief linked by the issue, if one is provided
 
 Issue URL:
 [PASTE ISSUE URL]
@@ -26,6 +27,7 @@ Before editing:
 5. Propose a small implementation plan.
 6. Define how you will test the change.
 7. Stop and ask me to approve the plan before editing.
+8. Treat automated scanner failures as blocking; report exact file/line findings and fix vulnerabilities rather than suppressing them. Do not claim scanners prove code is harmless.
 
 After approval:
 1. Work only on this issue and in my fork/branch.
